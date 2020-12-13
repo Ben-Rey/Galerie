@@ -4,7 +4,9 @@ body{
 }
 
 header{
+    font-family: 'Open Sans', sans-serif;
     height: 10vh;
+    width: 100%;
     background-color: rgb(121, 216, 184);
     color: rgb(58, 58, 58);
     font-size: 24pt;
@@ -14,15 +16,17 @@ header{
 }
 
 #main-container{
-    display: flex;
-    justify-content: center;    
+    display:grid;
     align-items: center;
-    flex-wrap: wrap;
-    /* padding:5%; */
+    /* Grid-template-columns:repeat(3,1fr); */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	Grid-gap:1em 1em;
+	Margin-top:1em;
 }
 
 .fit-picture{
-    width: 30%; 
+    width: 98%; 
     margin: 1%;   
     min-width: 150px;
+    align-self: stretch;
 }
