@@ -3,7 +3,6 @@ window.onload = start;
 function start() {
   const mainContainer = document.getElementById("main-container");
   addPicturesToDiv(pictures, mainContainer);
-  // Webcam.snap();
 }
 
 function addPicturesToDiv(pictures, div) {
