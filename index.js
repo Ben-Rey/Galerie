@@ -13,6 +13,9 @@ function start() {
 
 function addPicturesToDiv(div, picture) {
   div.innerHTML += `<img class="fit-picture" src="${picture.url}" alt="">`;
+  setTimeout(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, 100);
 }
 
 function addRandomPicture() {
@@ -36,6 +39,7 @@ function loadWebcam() {
     Webcam.attach("#my_camera");
   }, 2000);
 }
+
 function serviceWorker() {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {

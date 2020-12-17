@@ -4,6 +4,8 @@ body{
 }
 
 header{
+    position:fixed;
+    top :0;
     font-family: 'Open Sans', sans-serif;
     height: 10vh;
     width: 100%;
@@ -13,7 +15,10 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
+
+
 
 #main-container{
     display:grid;
@@ -21,7 +26,7 @@ header{
     /* Grid-template-columns:repeat(3,1fr); */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 	Grid-gap:1em 1em;
-	Margin-top:1em;
+	margin-top:10vh;
 }
 
 .fit-picture{
@@ -35,7 +40,5 @@ header{
 }
 
 #add-picture{
-    position: absolute;
-    top: 0;
-    left: 19px;
+
 }
