@@ -57,9 +57,9 @@ header {
 #install-app {
   background-color: #9cd6ff;
 }
-/* @media all and (max-width: 30em) {
-  #add-picture1 {
-    display: block;
-    margin: 0.4em auto;
+
+@media only screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
   }
-} */
+}
