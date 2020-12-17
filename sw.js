@@ -10,7 +10,7 @@ self.addEventListener("install", (e) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.open(cacheName).then((cache) => {
-      console.log("dsfdsf");
+      console.log("| New Request |");
       return cache.match(event.request).then((res) => {
         return res || fetch(event.request);
       });

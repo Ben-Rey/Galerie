@@ -1,13 +1,39 @@
 window.onload = start;
+window.addEventListener("beforeinstallprompt", (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+});
+
 serviceWorker();
+
 let mainPicturesContainer;
+let deferredPrompt;
+
 function start() {
   mainContainer = document.getElementById("main-container");
   buttonAddPicture = document.getElementById("add-picture");
+  buttonInstall = document.getElementById("install-app");
+
   buttonAddPicture.addEventListener("click", addRandomPicture);
   pictures.forEach((picture) => {
     addPicturesToDiv(mainContainer, picture);
   });
+
+  buttonInstall.addEventListener("click", (e) => {
+    // Show the install prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the install prompt");
+      } else {
+        console.log("User dismissed the install prompt");
+      }
+    });
+  });
+
   // loadWebcam();
 }
 
@@ -45,14 +71,12 @@ function serviceWorker() {
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("/sw.js").then(
         function (registration) {
-          // Registration was successful
           console.log(
             "ServiceWorker registration successful with scope: ",
             registration.scope
           );
         },
         function (err) {
-          // registration failed :(
           console.log("ServiceWorker registration failed: ", err);
         }
       );
