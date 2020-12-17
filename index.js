@@ -1,4 +1,5 @@
 window.onload = start;
+serviceWorker();
 let mainPicturesContainer;
 function start() {
   mainContainer = document.getElementById("main-container");
