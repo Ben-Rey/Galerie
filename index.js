@@ -1,58 +1,37 @@
 window.onload = start;
-
+let mainPicturesContainer;
 function start() {
-  const mainContainer = document.getElementById("main-container");
-  addPicturesToDiv(pictures, mainContainer);
-}
-
-function addPicturesToDiv(pictures, div) {
+  mainContainer = document.getElementById("main-container");
+  buttonAddPicture = document.getElementById("add-picture");
+  buttonAddPicture.addEventListener("click", addRandomPicture);
   pictures.forEach((picture) => {
-    div.innerHTML += `<img class="fit-picture" src="${picture.url}" alt="">`;
+    addPicturesToDiv(mainContainer, picture);
   });
+  // loadWebcam();
 }
 
-let pictures = [
-  {
-    url:
-      "https://cdn.pixabay.com/photo/2020/12/03/12/35/sunset-5800386_1280.jpg",
-  },
-  {
-    url: "https://cdn.pixabay.com/photo/2020/12/04/16/08/moss-5803607_1280.jpg",
-  },
+function addPicturesToDiv(div, picture) {
+  div.innerHTML += `<img class="fit-picture" src="${picture.url}" alt="">`;
+}
 
-  {
-    url:
-      "https://cdn.pixabay.com/photo/2020/11/22/08/06/forest-5765878_1280.jpg",
-  },
+function addRandomPicture() {
+  if (window.fetch) {
+    fetch("https://picsum.photos/1280/720").then(function (response) {
+      addPicturesToDiv(mainContainer, response);
+    });
+  } else {
+    console.error("Pas de fetch");
+  }
+}
 
-  {
-    url:
-      "https://cdn.pixabay.com/photo/2020/08/30/09/22/people-5528959_1280.jpg",
-  },
-  {
-    url: "https://cdn.pixabay.com/photo/2020/12/04/16/08/moss-5803607_1280.jpg",
-  },
-
-  {
-    url:
-      "https://cdn.pixabay.com/photo/2020/11/22/08/06/forest-5765878_1280.jpg",
-  },
-
-  {
-    url:
-      "https://cdn.pixabay.com/photo/2020/08/30/09/22/people-5528959_1280.jpg",
-  },
-  {
-    url: "https://cdn.pixabay.com/photo/2020/12/04/16/08/moss-5803607_1280.jpg",
-  },
-
-  {
-    url:
-      "https://cdn.pixabay.com/photo/2020/11/22/08/06/forest-5765878_1280.jpg",
-  },
-
-  {
-    url:
-      "https://cdn.pixabay.com/photo/2020/08/30/09/22/people-5528959_1280.jpg",
-  },
-];
+function loadWebcam() {
+  setTimeout(() => {
+    Webcam.set({
+      width: 1000,
+      height: 240,
+      image_format: "jpeg",
+      jpeg_quality: 90,
+    });
+    Webcam.attach("#my_camera");
+  }, 2000);
+}

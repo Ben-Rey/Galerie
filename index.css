@@ -30,3 +30,12 @@ header{
     min-width: 150px;
     align-self: stretch;
 }
+#my_camera{
+    width: 100vw;
+}
+
+#add-picture{
+    position: absolute;
+    top: 0;
+    left: 19px;
+}
